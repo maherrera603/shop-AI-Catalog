@@ -39,7 +39,7 @@ namespace Catalog.Api.app.presentation.middlewares
 				var response = ApiResponse<object>.Error ( 
 					StatusCodes.Status500InternalServerError,
 					"Internal-Server-Error",
-					"Ha occurido un error interno." + ex.Message
+					"Ha occurido un error interno: " + ex.Message
 				);
 
 				await context.Response.WriteAsync(JsonSerializer.Serialize(response));
