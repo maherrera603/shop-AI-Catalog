@@ -33,11 +33,4 @@ public class Category {
 
 
 	public Category(){}
-
-
-	public Category(string name, string slug, string description){
-		Name = name;
-		Slug = slug;
-		Description = description;
-	}
 }

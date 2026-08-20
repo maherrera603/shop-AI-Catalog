@@ -19,7 +19,13 @@ public class CreateCategoryUsecase {
 		Category? existingCategory = await _categoryRepository.FindBySlug(createCategoryDTO.Slug);
 		if(existingCategory != null) throw CustomError.Conflict("Ya existe una categoria con ese slug");
 
-		Category newCategory = new Category(createCategoryDTO.Name, createCategoryDTO.Slug, createCategoryDTO.Description);
+		Category newCategory = new Category{
+			Name = createCategoryDTO.Name,
+			Slug = createCategoryDTO.Slug,
+			Description = createCategoryDTO.Description,
+			ImageUrl = createCategoryDTO.ImageUrl,
+			IsActive = createCategoryDTO.IsActive
+		};
 
 		Category createdCategory = await _categoryRepository.Create(newCategory);
 

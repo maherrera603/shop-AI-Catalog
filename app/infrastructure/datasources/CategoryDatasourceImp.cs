@@ -23,7 +23,9 @@ namespace Catalog.Api.app.infrastructure.datasources
                 new {
                     name = category.Name,
                     slug = category.Slug,
-                    description = category.Description
+                    description = category.Description,
+                    image = category.ImageUrl,
+                    isActive = category.IsActive
                 },
                 commandType: CommandType.StoredProcedure
             );
