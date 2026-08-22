@@ -14,6 +14,8 @@ public class CategoryResponse {
 	public string Description { get; set; } = string.Empty;
 
 	public string ImageUrl { get; set; } = string.Empty;
+
+	public string ImageProviderId { get; set; } = string.Empty;
 	
 	public bool IsActive { get; set; }
 
@@ -24,6 +26,7 @@ public class CategoryResponse {
 		Slug = category.Slug;
 		Description = category.Description;
 		ImageUrl = category.ImageUrl;
+		ImageProviderId = category.ImageProviderId;
 		IsActive = category.IsActive;
 	}
 }

@@ -24,6 +24,7 @@ public class CreateCategoryUsecase {
 			Slug = createCategoryDTO.Slug,
 			Description = createCategoryDTO.Description,
 			ImageUrl = createCategoryDTO.ImageUrl,
+			ImageProviderId = createCategoryDTO.ImageProviderId,
 			IsActive = createCategoryDTO.IsActive
 		};
 

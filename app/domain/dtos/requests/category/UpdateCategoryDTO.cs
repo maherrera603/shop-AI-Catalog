@@ -6,6 +6,8 @@ public class UpdateCategoryDTO {
 	public string Name { get; set; } = string.Empty;
 	public string Slug { get; set; } = string.Empty;
 	public string Description { get; set; } = string.Empty;
+	public string ImageUrl { get; set; } = string.Empty;
+	public string ImageProviderId { get; set; } = string.Empty;
 	public bool IsActive { get; set; } = true;
 
 
@@ -22,6 +24,10 @@ public class UpdateCategoryDTO {
 		if(string.IsNullOrEmpty(Description)) return "Ingrese la descripcion de la categoria";
 
 		if(!Validator.TextDescription(Description)) return "La descripción de la categoría contiene caracteres no permitidos.";
+
+		if(string.IsNullOrEmpty(ImageUrl)) return "La imagen de la categoria es requerida";
+
+		if(string.IsNullOrEmpty(ImageProviderId)) return "el identificador del provedor es requerido";
 
 		return null;
 	}

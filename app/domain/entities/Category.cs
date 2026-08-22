@@ -19,6 +19,8 @@ public class Category {
 
 	[ Column("image_url")]
 	public string ImageUrl { get; set; } = string.Empty;
+
+	public string ImageProviderId { get; set; } = string.Empty;
 	
 	[ Column("is_active")]
 	public bool IsActive { get; set; }

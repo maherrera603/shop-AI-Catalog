@@ -100,9 +100,6 @@ public class CategoryController : ControllerBase {
 		CategoryResponse category = await _deleteCategoryUsecase.Execute(id);
 		return ApiResponse<CategoryResponse>.Success(category, "La categoria ha sido eliminada");
 	}
-
-
-	
 }
     
 

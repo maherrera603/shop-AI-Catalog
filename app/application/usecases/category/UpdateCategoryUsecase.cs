@@ -22,7 +22,6 @@ public class UpdateCategoryUsecase {
 		if(category == null) throw CustomError.NotFound("la categoria no fue excontrada");
 
 		if(category.Slug != updateCategoryDTO.Slug){
-
 			Category? slugCategory = await _categoryRepository.FindBySlug(updateCategoryDTO.Slug);
 			if(slugCategory != null && slugCategory.Id != category.Id) throw CustomError.Conflict("Ya existe una categoria con ese slug");
 		}
@@ -30,6 +29,8 @@ public class UpdateCategoryUsecase {
 		category.Name = updateCategoryDTO.Name;
 		category.Slug = updateCategoryDTO.Slug;
 		category.Description = updateCategoryDTO.Description;
+		category.ImageUrl = updateCategoryDTO.ImageUrl;
+		category.ImageProviderId = updateCategoryDTO.ImageProviderId;
 		category.IsActive = updateCategoryDTO.IsActive;
 
 		var categoryUpdated = await _categoryRepository.UpdateById(category);

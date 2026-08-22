@@ -25,6 +25,7 @@ namespace Catalog.Api.app.infrastructure.datasources
                     slug = category.Slug,
                     description = category.Description,
                     image = category.ImageUrl,
+                    imageProviderId = category.ImageProviderId,
                     isActive = category.IsActive
                 },
                 commandType: CommandType.StoredProcedure
@@ -115,6 +116,8 @@ namespace Catalog.Api.app.infrastructure.datasources
                     name = category.Name,
                     slug = category.Slug,
                     description = category.Description,
+                    imageUrl = category.ImageUrl,
+                    imageProviderId = category.ImageProviderId,
                     isActive = category.IsActive
                 },
                 commandType: CommandType.StoredProcedure
