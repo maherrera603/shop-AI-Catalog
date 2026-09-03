@@ -3,6 +3,9 @@ using System.Data;
 using Catalog.Api.app.domain.datasources;
 using Catalog.Api.app.domain.entities;
 using Catalog.Api.app.infrastructure.database;
+using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.responses.category;
+
 
 namespace Catalog.Api.app.infrastructure.datasources
 {
@@ -43,16 +46,32 @@ namespace Catalog.Api.app.infrastructure.datasources
             );
         }
 
-        public async Task<List<Category>> Find()
+        public async Task<PaginationCategoryResponse> Find(CategoryQueryParams queryParams)
         {
             using var connection = _factory.CreateConnection();
 
-            var categories = await connection.QueryAsync<Category>(
+            var parameters = new DynamicParameters();
+            parameters.Add("@Page", queryParams.Page);
+            parameters.Add("@PageSize", queryParams.PageSize);
+            parameters.Add("@Status", queryParams.isActive);
+            parameters.Add("@Search", queryParams.Search);
+            
+
+            var result = await connection.QueryMultipleAsync(
                 "sp_categories_all",
+                parameters,
                 commandType: CommandType.StoredProcedure
             );
 
-            return categories.ToList();
+            var totalItems = await result.ReadSingleAsync<int>();
+
+            var categories = (await result.ReadAsync<Category>()).ToList();
+
+
+            return new PaginationCategoryResponse{
+                TotalItems = totalItems,
+                Categories = categories.Select(c => new CategoryResponse(c)).ToList()
+            };
         }
 
         public async Task<List<Category>> FindByActive()

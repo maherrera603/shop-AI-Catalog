@@ -1,6 +1,10 @@
 using Catalog.Api.app.domain.entities;
 using Catalog.Api.app.domain.repositories;
 using Catalog.Api.app.domain.datasources;
+using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.responses.category;
+
+
 
 namespace Catalog.Api.app.infrastructure.repositories{
 
@@ -21,9 +25,9 @@ namespace Catalog.Api.app.infrastructure.repositories{
             return _datasource.DeleteById(id);
         }
 
-        public Task<List<Category>> Find()
+        public Task<PaginationCategoryResponse> Find(CategoryQueryParams queryParams)
         {
-            return _datasource.Find();
+            return _datasource.Find(queryParams);
         }
 
         public Task<List<Category>> FindByActive()

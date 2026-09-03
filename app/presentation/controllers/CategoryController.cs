@@ -7,6 +7,7 @@ using Catalog.Api.app.domain.dtos.requests.category;
 using Catalog.Api.app.domain.error;
 
 
+
 namespace Catalog.Api.app.presentation.controllers;
 
 [ApiController]
@@ -49,9 +50,10 @@ public class CategoryController : ControllerBase {
 
 
 	[HttpGet("all")]
-	public async Task<ApiResponse<List<CategoryResponse>>> FindCategories(){
-		List<CategoryResponse> categories = await _findCategoriesUsecase.Execute();
-		return ApiResponse<List<CategoryResponse>>.Success(categories, "Categorias obtenidas correctamente.");
+	public async Task<ApiResponse<PaginationCategoryResponse>> FindCategories([FromQuery] CategoryQueryParams queryParams){
+		PaginationCategoryResponse categories = await _findCategoriesUsecase.Execute( queryParams );
+
+		return ApiResponse<PaginationCategoryResponse>.Success(categories, "Categorias obtenidas correctamente.");
 	}
 
 	[HttpPost]

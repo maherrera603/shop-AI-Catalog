@@ -1,4 +1,6 @@
 using Catalog.Api.app.domain.entities;
+using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.responses.category;
 
 namespace Catalog.Api.app.domain.datasources
 {
@@ -9,7 +11,7 @@ namespace Catalog.Api.app.domain.datasources
 
 		Task<List<Category>> FindByActive();
 
-		Task<List<Category>> Find();
+		Task<PaginationCategoryResponse> Find(CategoryQueryParams queryParams);
 
 		Task<Category?> FindBySlug( string slug);
 
