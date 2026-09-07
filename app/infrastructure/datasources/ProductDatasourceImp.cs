@@ -1,10 +1,11 @@
 using System.Data;
 using Dapper;
-using Catalog.Api.app.infrastructure.database;
 using Catalog.Api.app.domain.datasources;
-using Catalog.Api.app.domain.entities;
-using Catalog.Api.app.domain.dtos.responses.product;
 using Catalog.Api.app.domain.dtos.responses.pagination;
+using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.entities;
+using Catalog.Api.app.infrastructure.database;
+using Catalog.Api.app.domain.dtos.requests.querys;
 
 namespace Catalog.Api.app.infrastructure.datasources;
 
@@ -47,11 +48,15 @@ public class ProductDatasourceImp : IProductDatasource {
         );
     }
 
-    public async Task<PaginationResponse<ProductResponse>> Find()
+    public async Task<PaginationResponse<ProductResponse>> Find(QueryParams queryParams)
     {
         using var connection = _factory.CreateConnection();
 
         var parameters = new DynamicParameters();
+        parameters.Add("@Page", queryParams.Page);
+        parameters.Add("@PageSize", queryParams.PageSize);
+        parameters.Add("@Status", queryParams.isActive);
+        parameters.Add("@Search", queryParams.Search);
 
         var result = await connection.QueryMultipleAsync(
             "sp_products",

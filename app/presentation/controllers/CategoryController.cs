@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Catalog.Api.app.application.usecases.category;
 using Catalog.Api.app.domain.common;
-using Catalog.Api.app.domain.dtos.responses.pagination;
-using Catalog.Api.app.domain.dtos.responses.category;
-using Catalog.Api.app.presentation.attributes;
 using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.requests.querys;
+using Catalog.Api.app.domain.dtos.responses.category;
+using Catalog.Api.app.domain.dtos.responses.pagination;
 using Catalog.Api.app.domain.error;
+using Catalog.Api.app.presentation.attributes;
 
 
 
@@ -51,7 +52,7 @@ public class CategoryController : ControllerBase {
 
 
 	[HttpGet("all")]
-	public async Task<ApiResponse<PaginationResponse<CategoryResponse>>> FindCategories([FromQuery] CategoryQueryParams queryParams){
+	public async Task<ApiResponse<PaginationResponse<CategoryResponse>>> FindCategories([FromQuery] QueryParams queryParams){
 		PaginationResponse<CategoryResponse> categories = await _findCategoriesUsecase.Execute( queryParams );
 
 		return ApiResponse<PaginationResponse<CategoryResponse>>.Success(categories, "Categorias obtenidas correctamente.");

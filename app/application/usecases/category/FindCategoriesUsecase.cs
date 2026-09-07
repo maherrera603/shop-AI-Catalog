@@ -1,5 +1,5 @@
 using Catalog.Api.app.domain.repositories;
-using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.requests.querys;
 using Catalog.Api.app.domain.dtos.responses.pagination;
 using Catalog.Api.app.domain.dtos.responses.category;
 
@@ -15,7 +15,7 @@ public class FindCategoriesUsecase {
 	}
 
 
-	public async Task<PaginationResponse<CategoryResponse>> Execute(CategoryQueryParams queryParams){
+	public async Task<PaginationResponse<CategoryResponse>> Execute(QueryParams queryParams){
 		PaginationResponse<CategoryResponse> paginationCategory = await _repository.Find(queryParams);
 		return paginationCategory;
 	}

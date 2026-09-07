@@ -1,6 +1,7 @@
 using Catalog.Api.app.domain.repositories;
 using Catalog.Api.app.domain.dtos.responses.pagination;
 using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.dtos.requests.querys;
 
 namespace Catalog.Api.app.application.usecases.product;
 
@@ -12,8 +13,8 @@ public class FindProductsUsecase {
 		_productRepository = productRepository;
 	}
 
-	public async Task<PaginationResponse<ProductResponse>> Execute(){
-		return await _productRepository.Find();
+	public async Task<PaginationResponse<ProductResponse>> Execute(QueryParams queryParams){
+		return await _productRepository.Find(queryParams);
 	}
 }
 

@@ -1,7 +1,8 @@
-using Catalog.Api.app.domain.entities;
-using Catalog.Api.app.domain.dtos.responses.product;
-using Catalog.Api.app.domain.dtos.responses.pagination;
 using Catalog.Api.app.domain.datasources;
+using Catalog.Api.app.domain.dtos.requests.querys;
+using Catalog.Api.app.domain.dtos.responses.pagination;
+using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.entities;
 using Catalog.Api.app.domain.repositories;
 
 namespace Catalog.Api.app.infrastructure.repositories;
@@ -23,9 +24,9 @@ public class ProductRepositoryImp : IProductRepository{
         return _productDatasource.DeleteById(id);
     }
 
-    public Task<PaginationResponse<ProductResponse>> Find()
+    public Task<PaginationResponse<ProductResponse>> Find(QueryParams queryParams)
     {
-        return _productDatasource.Find();
+        return _productDatasource.Find( queryParams );
     }
 
     public Task<List<ProductResponse>> FindActive()

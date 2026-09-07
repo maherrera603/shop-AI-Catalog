@@ -1,9 +1,9 @@
-using Catalog.Api.app.domain.entities;
-using Catalog.Api.app.domain.repositories;
 using Catalog.Api.app.domain.datasources;
-using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.requests.querys;
 using Catalog.Api.app.domain.dtos.responses.category;
 using Catalog.Api.app.domain.dtos.responses.pagination;
+using Catalog.Api.app.domain.entities;
+using Catalog.Api.app.domain.repositories;
 
 
 
@@ -26,7 +26,7 @@ namespace Catalog.Api.app.infrastructure.repositories{
             return _datasource.DeleteById(id);
         }
 
-        public Task<PaginationResponse<CategoryResponse>> Find(CategoryQueryParams queryParams)
+        public Task<PaginationResponse<CategoryResponse>> Find(QueryParams queryParams)
         {
             return _datasource.Find(queryParams);
         }

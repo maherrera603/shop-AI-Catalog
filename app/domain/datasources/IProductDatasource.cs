@@ -1,13 +1,14 @@
-using Catalog.Api.app.domain.entities;
-using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.dtos.requests.querys;
 using Catalog.Api.app.domain.dtos.responses.pagination;
+using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.entities;
 
 namespace Catalog.Api.app.domain.datasources;
 
 
 public interface IProductDatasource {
 
-	Task<PaginationResponse<ProductResponse>> Find();
+	Task<PaginationResponse<ProductResponse>> Find(QueryParams queryParams);
 	Task<List<ProductResponse>> FindActive();
 	Task<ProductResponse?> FindById(Guid id);
 	Task<ProductResponse?> FindBySlug(string slug);

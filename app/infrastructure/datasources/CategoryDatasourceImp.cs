@@ -3,7 +3,7 @@ using System.Data;
 using Catalog.Api.app.domain.datasources;
 using Catalog.Api.app.domain.entities;
 using Catalog.Api.app.infrastructure.database;
-using Catalog.Api.app.domain.dtos.requests.category;
+using Catalog.Api.app.domain.dtos.requests.querys;
 using Catalog.Api.app.domain.dtos.responses.category;
 using Catalog.Api.app.domain.dtos.responses.pagination;
 
@@ -47,7 +47,7 @@ namespace Catalog.Api.app.infrastructure.datasources
             );
         }
 
-        public async Task<PaginationResponse<CategoryResponse>> Find(CategoryQueryParams queryParams)
+        public async Task<PaginationResponse<CategoryResponse>> Find(QueryParams queryParams)
         {
             using var connection = _factory.CreateConnection();
 
