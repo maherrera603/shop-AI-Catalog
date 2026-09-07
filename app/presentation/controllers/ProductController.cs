@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Catalog.Api.app.application.usecases.product;
 using Catalog.Api.app.domain.common;
+using Catalog.Api.app.domain.dtos.responses.pagination;
 using Catalog.Api.app.domain.dtos.responses.product;
 using Catalog.Api.app.presentation.attributes;
 using Catalog.Api.app.domain.dtos.requests.product;
@@ -39,9 +40,9 @@ public class ProductController: ControllerBase {
 	}
 
 	[HttpGet("all")]
-	public async Task<ApiResponse<List<ProductResponse>>> Find(){
+	public async Task<ApiResponse<PaginationResponse<ProductResponse>>> Find(){
 		var products = await _findProductsUsecase.Execute();
-		return ApiResponse<List<ProductResponse>>.Success(products, "Listado de productos");
+		return ApiResponse<PaginationResponse<ProductResponse>>.Success(products, "Listado de productos");
 	}
 
 	[HttpGet]

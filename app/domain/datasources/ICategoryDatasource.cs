@@ -1,6 +1,7 @@
 using Catalog.Api.app.domain.entities;
 using Catalog.Api.app.domain.dtos.requests.category;
 using Catalog.Api.app.domain.dtos.responses.category;
+using Catalog.Api.app.domain.dtos.responses.pagination;
 
 namespace Catalog.Api.app.domain.datasources
 {

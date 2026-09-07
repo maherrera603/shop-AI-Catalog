@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Catalog.Api.app.application.usecases.category;
 using Catalog.Api.app.domain.common;
+using Catalog.Api.app.domain.dtos.responses.pagination;
 using Catalog.Api.app.domain.dtos.responses.category;
 using Catalog.Api.app.presentation.attributes;
 using Catalog.Api.app.domain.dtos.requests.category;

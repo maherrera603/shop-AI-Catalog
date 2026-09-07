@@ -3,6 +3,7 @@ using Catalog.Api.app.domain.repositories;
 using Catalog.Api.app.domain.datasources;
 using Catalog.Api.app.domain.dtos.requests.category;
 using Catalog.Api.app.domain.dtos.responses.category;
+using Catalog.Api.app.domain.dtos.responses.pagination;
 
 
 

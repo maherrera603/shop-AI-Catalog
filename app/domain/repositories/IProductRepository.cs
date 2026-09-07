@@ -1,4 +1,6 @@
 using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.dtos.responses.pagination;
+
 using Catalog.Api.app.domain.entities;
 
 namespace Catalog.Api.app.domain.repositories;
@@ -6,7 +8,7 @@ namespace Catalog.Api.app.domain.repositories;
 
 public interface IProductRepository {
 
-	Task<List<ProductResponse>> Find();
+	Task<PaginationResponse<ProductResponse>> Find();
 	Task<List<ProductResponse>> FindActive();
 	Task<ProductResponse?> FindById(Guid id);
 	Task<ProductResponse?> FindBySlug(string slug);

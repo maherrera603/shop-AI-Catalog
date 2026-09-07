@@ -4,6 +4,7 @@ using Catalog.Api.app.infrastructure.database;
 using Catalog.Api.app.domain.datasources;
 using Catalog.Api.app.domain.entities;
 using Catalog.Api.app.domain.dtos.responses.product;
+using Catalog.Api.app.domain.dtos.responses.pagination;
 
 namespace Catalog.Api.app.infrastructure.datasources;
 
@@ -46,16 +47,25 @@ public class ProductDatasourceImp : IProductDatasource {
         );
     }
 
-    public async Task<List<ProductResponse>> Find()
+    public async Task<PaginationResponse<ProductResponse>> Find()
     {
         using var connection = _factory.CreateConnection();
 
-        var products = await connection.QueryAsync<ProductResponse>(
+        var parameters = new DynamicParameters();
+
+        var result = await connection.QueryMultipleAsync(
             "sp_products",
+            parameters,
             commandType: CommandType.StoredProcedure
         );
 
-        return products.ToList();
+        var totalItems = await result.ReadSingleAsync<int>();
+        var products = (await result.ReadAsync<Product>()).ToList();
+
+        return new PaginationResponse<ProductResponse>{
+            TotalItems = totalItems,
+            Items = products.Select(p => new ProductResponse(p)).ToList()
+        };
     }
 
     public async Task<List<ProductResponse>> FindActive()
