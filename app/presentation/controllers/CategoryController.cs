@@ -50,10 +50,10 @@ public class CategoryController : ControllerBase {
 
 
 	[HttpGet("all")]
-	public async Task<ApiResponse<PaginationCategoryResponse>> FindCategories([FromQuery] CategoryQueryParams queryParams){
-		PaginationCategoryResponse categories = await _findCategoriesUsecase.Execute( queryParams );
+	public async Task<ApiResponse<PaginationResponse<CategoryResponse>>> FindCategories([FromQuery] CategoryQueryParams queryParams){
+		PaginationResponse<CategoryResponse> categories = await _findCategoriesUsecase.Execute( queryParams );
 
-		return ApiResponse<PaginationCategoryResponse>.Success(categories, "Categorias obtenidas correctamente.");
+		return ApiResponse<PaginationResponse<CategoryResponse>>.Success(categories, "Categorias obtenidas correctamente.");
 	}
 
 	[HttpPost]

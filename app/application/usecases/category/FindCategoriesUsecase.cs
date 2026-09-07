@@ -15,8 +15,8 @@ public class FindCategoriesUsecase {
 	}
 
 
-	public async Task<PaginationCategoryResponse> Execute(CategoryQueryParams queryParams){
-		PaginationCategoryResponse paginationCategory = await _repository.Find(queryParams);
+	public async Task<PaginationResponse<CategoryResponse>> Execute(CategoryQueryParams queryParams){
+		PaginationResponse<CategoryResponse> paginationCategory = await _repository.Find(queryParams);
 		return paginationCategory;
 	}
 	

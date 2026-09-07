@@ -11,7 +11,7 @@ namespace Catalog.Api.app.domain.datasources
 
 		Task<List<Category>> FindByActive();
 
-		Task<PaginationCategoryResponse> Find(CategoryQueryParams queryParams);
+		Task<PaginationResponse<CategoryResponse>> Find(CategoryQueryParams queryParams);
 
 		Task<Category?> FindBySlug( string slug);
 

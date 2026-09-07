@@ -25,7 +25,7 @@ namespace Catalog.Api.app.infrastructure.repositories{
             return _datasource.DeleteById(id);
         }
 
-        public Task<PaginationCategoryResponse> Find(CategoryQueryParams queryParams)
+        public Task<PaginationResponse<CategoryResponse>> Find(CategoryQueryParams queryParams)
         {
             return _datasource.Find(queryParams);
         }

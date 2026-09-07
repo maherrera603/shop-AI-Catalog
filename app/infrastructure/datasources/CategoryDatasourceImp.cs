@@ -46,7 +46,7 @@ namespace Catalog.Api.app.infrastructure.datasources
             );
         }
 
-        public async Task<PaginationCategoryResponse> Find(CategoryQueryParams queryParams)
+        public async Task<PaginationResponse<CategoryResponse>> Find(CategoryQueryParams queryParams)
         {
             using var connection = _factory.CreateConnection();
 
@@ -68,9 +68,9 @@ namespace Catalog.Api.app.infrastructure.datasources
             var categories = (await result.ReadAsync<Category>()).ToList();
 
 
-            return new PaginationCategoryResponse{
+            return new PaginationResponse<CategoryResponse>{
                 TotalItems = totalItems,
-                Categories = categories.Select(c => new CategoryResponse(c)).ToList()
+                Items = categories.Select(c => new CategoryResponse(c)).ToList()
             };
         }
 
